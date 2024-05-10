@@ -10,7 +10,7 @@ Script will:<br>
 
 ## To Install
 
-1. Download the installation script using `wget`:
+1. Download the installation script using `wget`: (you may need to install it with: pkg install wget)
     ```bash
     wget https://raw.githubusercontent.com/Coralesoft/OPNsenseCloudflared/main/cloudflared-opnsense-freebsd-build-install.sh
     ```
