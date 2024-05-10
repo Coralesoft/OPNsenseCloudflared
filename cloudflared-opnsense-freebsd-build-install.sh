@@ -9,6 +9,12 @@
 #
 # To update / upgrade cloudflared binary just rerun the Script
 #
+# Last revised 11/05/2024
+# version 2024.5.2
+#-----------------------------------------------------------------------
+# Version     Date          Notes:
+# 2024.5.1    10.05.2024    Inital Release
+# 2024.5.2    11.05.2024    Script updates
 # Copyright (C) 2024 C. Brown (dev@coralesoft.nz)
 # Released under the MIT License
 
