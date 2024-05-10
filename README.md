@@ -6,3 +6,4 @@ Script will:<br>
 - Build the cloudflared binary<br>
 - Install the cloudflared binary for use<br>
 - Remove the build and source environments<br>
+- To update / upgrade cloudflared binary just re-run the script
