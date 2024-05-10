@@ -7,6 +7,8 @@
 #    - Install cloudflared binary for use
 #    - Remove the build and source environments
 #
+#	To update / upgrade cloudflared binary just rerun the Script
+#
 # Copyright (C) 2024 C. Brown (dev@coralesoft.nz)
 # Released under the MIT License
 
