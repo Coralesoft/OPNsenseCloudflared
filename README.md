@@ -1,8 +1,8 @@
 # Cloudflared build and install for OPNsense & FreeBSD
- Script will:
-    - Create the build environment
-    - Pull the latest cloudflared source from GitHub
-    - Build the cloudflared binary
-    - Install cloudflared binary for use
-    - Remove the build and source environments
 
+Script will:<br>
+- Create the build environment<br>
+- Pull the latest cloudflared source from GitHub<br>
+- Build the cloudflared binary<br>
+- Install the cloudflared binary for use<br>
+- Remove the build and source environments<br>
