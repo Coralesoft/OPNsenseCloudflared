@@ -24,3 +24,8 @@ Script will:<br>
     ```bash
     ./cloudflared-opnsense-freebsd-build-install.sh
     ```
+
+4. Test cloudflared is working, type clouldflared version or clouldflared help and check the output:
+    ```bash
+    cloudflared help
+    ```
