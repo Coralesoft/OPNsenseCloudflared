@@ -15,6 +15,7 @@
 # Version     Date          Notes:
 # 2024.5.1    10.05.2024    Inital Release
 # 2024.5.2    11.05.2024    Script updates
+#
 # Copyright (C) 2024 C. Brown (dev@coralesoft.nz)
 # Released under the MIT License
 
@@ -35,7 +36,7 @@ GOOS_TARGET="freebsd"
 GOARCH_TARGET="amd64"
 SBIN_DIR="/usr/local/sbin"
 
-# Get the latest version of Cloudflared using GitHub API
+# Get the latest version of Cloudflared
 echo "Fetching the latest Cloudflared version..."
 LATEST=$(curl -sL https://api.github.com/repos/cloudflare/cloudflared/releases/latest | jq -r ".tag_name")
 if [ -z "$LATEST" ]; then
@@ -44,7 +45,7 @@ if [ -z "$LATEST" ]; then
 fi
 echo "Latest Cloudflared version is: $LATEST"
 
-# Calculate current build time in the desired format
+# Calculate current build time
 BUILD_TIME=$(date -u +"%Y-%m-%d-%H%M UTC")
 
 # Create source directory
@@ -74,7 +75,7 @@ if ! git clone "$CLOUDFLARED_REPO" "$CLOUDFLARED_DIR"; then
     exit 1
 fi
 
-# Modify main.go with the latest version and calculated build time using awk and sed
+# Modify main.go with the latest version and calculated build time
 cd "$CLOUDFLARED_DIR/cmd/cloudflared" || exit 1
 if [ ! -f main.go ]; then
     echo "main.go not found."
