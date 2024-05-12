@@ -29,3 +29,9 @@ Script will:<br>
     ```bash
     cloudflared help
     ```
+
+## Support the Project
+
+If this project helps you streamline your OpenWrt setup and you want to support my ongoing work, consider buying me a coffee. Your generous contribution keeps the creativity flowing and helps sustain future development. Thanks for supporting!
+
+<a href="https://www.buymeacoffee.com/r6zt79njh5m" target="_blank"> <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" > </a>
