@@ -13,13 +13,16 @@
 # version 2024.5.2
 #-----------------------------------------------------------------------
 # Version     Date          Notes:
-# 2024.5.1    10.05.2024    Inital Release
+# 2024.5.1    10.05.2024    Initial Release
 # 2024.5.2    11.05.2024    Script updates
 #
 # Copyright (C) 2024 C. Brown (dev@coralesoft.nz)
 # Released under the MIT License
 
-# Install required tools
+set -e
+
+# Install required tools if not already installed
+echo "Checking and installing required tools..."
 pkg install -y nano wget git jq || { echo "Failed to install packages"; exit 1; }
 
 # Variables
@@ -53,16 +56,19 @@ mkdir -p "$SRC_DIR"
 cd "$SRC_DIR" || exit 1
 
 # Download Go binary
+echo "Downloading Go $GO_VERSION..."
 if ! wget "$GO_DOWNLOAD_URL"; then
     echo "Error downloading Go $GO_VERSION. Please check the download URL."
     exit 1
 fi
 
 # Extract the Go tarball
+echo "Extracting Go tarball..."
 tar -xf "$GO_TAR_FILE"
 
 # Move Go to the installation directory
-sudo mv go "$INSTALL_DIR"
+echo "Moving Go to the installation directory..."
+mv go "$INSTALL_DIR"
 
 # Set environment variables for the script's execution
 export GOROOT=$GOROOT
@@ -70,6 +76,7 @@ export GOPATH=$GOPATH
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # Clone the cloudflared repository
+echo "Cloning the cloudflared repository..."
 if ! git clone "$CLOUDFLARED_REPO" "$CLOUDFLARED_DIR"; then
     echo "Error cloning cloudflared repository. Please check the repository URL."
     exit 1
@@ -82,6 +89,7 @@ if [ ! -f main.go ]; then
     exit 1
 fi
 
+echo "Updating version and build time in main.go..."
 awk '/var \(/{flag=1} flag; /}/{flag=0}' main.go | sed -i '' \
     -e 's/^[[:blank:]]*Version[[:blank:]]*=[[:blank:]]*"[^"]*"/    Version = "'"$LATEST"'"/' \
     -e 's/^[[:blank:]]*BuildTime[[:blank:]]*=[[:blank:]]*"[^"]*"/    BuildTime = "'"$BUILD_TIME"'"/' main.go
@@ -96,7 +104,8 @@ GOOS=$GOOS_TARGET GOARCH=$GOARCH_TARGET go build -a "$CLOUDFLARED_DIR/cmd/cloudf
 
 # Copy the cloudflared binary to /usr/local/sbin
 if [ -f "./cloudflared" ]; then
-    sudo mv ./cloudflared "$SBIN_DIR/"
+    echo "Moving cloudflared binary to $SBIN_DIR..."
+    mv ./cloudflared "$SBIN_DIR/"
     echo "**************************************"
     echo "***    Build was successful        ***"
     echo "**************************************"
